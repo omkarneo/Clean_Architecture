@@ -15,8 +15,6 @@ class JokesIm extends Jokesab {
       var obj = Jokes.fromJson(response.data[i]);
       senddata.add(obj);
     }
-    print(senddata.runtimeType);
-    print(senddata);
 
     return senddata;
   }

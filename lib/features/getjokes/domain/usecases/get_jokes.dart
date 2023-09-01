@@ -1,6 +1,5 @@
 import 'package:clean_architecture/core/usecases/basicusescaes.dart';
 import 'package:clean_architecture/features/getjokes/domain/repository/jokesab.dart';
-import 'package:dio/dio.dart';
 
 class GetJokesUsecase implements BaseUseCase {
   final Jokesab joke;

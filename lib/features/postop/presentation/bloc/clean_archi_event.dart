@@ -7,6 +7,7 @@ sealed class CleanArchiEvent extends Equatable {
   List<Object> get props => [];
 }
 
+// ignore: must_be_immutable
 class SubmitEvent extends CleanArchiEvent {
   dynamic name;
   dynamic password;

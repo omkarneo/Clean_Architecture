@@ -9,6 +9,7 @@ sealed class GetnewsState extends Equatable {
 
 final class GetnewsInitial extends GetnewsState {}
 
+// ignore: must_be_immutable
 final class LoadedState extends GetnewsState {
   dynamic res;
   LoadedState(this.res);
