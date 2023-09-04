@@ -12,5 +12,6 @@ final class GetnewsInitial extends GetnewsState {}
 // ignore: must_be_immutable
 final class LoadedState extends GetnewsState {
   dynamic res;
-  LoadedState(this.res);
+  dynamic randomjoke;
+  LoadedState(this.res, this.randomjoke);
 }

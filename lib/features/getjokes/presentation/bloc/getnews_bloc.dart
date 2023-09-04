@@ -8,12 +8,15 @@ part 'getnews_state.dart';
 
 class GetnewsBloc extends Bloc<GetnewsEvent, GetnewsState> {
   final GetJokesUsecase getjokeuse;
-  GetnewsBloc(this.getjokeuse) : super(GetnewsInitial()) {
+  final GetRandomJoke getrandomjoke;
+  GetnewsBloc(this.getjokeuse, this.getrandomjoke) : super(GetnewsInitial()) {
     on<ApihitEvent>((event, emit) async {
       emit(GetnewsInitial());
       var res = await getjokeuse.call("");
       // print(res);
-      emit(LoadedState(res));
+      var random = await getrandomjoke.call("");
+
+      emit(LoadedState(res, random));
     });
   }
 }

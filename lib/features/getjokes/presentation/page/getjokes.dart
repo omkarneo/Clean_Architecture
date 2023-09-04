@@ -21,7 +21,7 @@ class _GetNewsState extends State<GetNews> {
             builder: (context, state) {
               if (state is LoadedState) {
                 return SizedBox(
-                  height: MediaQuery.sizeOf(context).height * 0.8,
+                  height: MediaQuery.sizeOf(context).height / 3,
                   child: ListView.separated(
                       itemBuilder: (context, index) {
                         return ListTile(
@@ -37,6 +37,21 @@ class _GetNewsState extends State<GetNews> {
                         );
                       },
                       itemCount: state.res.length),
+                );
+              }
+              return const Text("");
+            },
+          ),
+          BlocBuilder<GetnewsBloc, GetnewsState>(
+            builder: (context, state) {
+              if (state is LoadedState) {
+                return SizedBox(
+                  height: MediaQuery.sizeOf(context).height / 3,
+                  child: ListTile(
+                    title: Text(state.randomjoke['setup']),
+                    subtitle: Text(state.randomjoke['punchline']),
+                    leading: Text("${state.randomjoke['id']}"),
+                  ),
                 );
               }
               return const Text("");

@@ -18,4 +18,13 @@ class JokesIm extends Jokesab {
 
     return senddata;
   }
+
+  @override
+  Future<Map> getrandomjoke() async {
+    final response =
+        await dio.get('https://official-joke-api.appspot.com/random_ten');
+
+    print(response.data[0].runtimeType);
+    return response.data[0];
+  }
 }

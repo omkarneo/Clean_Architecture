@@ -9,3 +9,12 @@ class GetJokesUsecase implements BaseUseCase {
     return await joke.getjokes();
   }
 }
+
+class GetRandomJoke implements BaseUseCase {
+  final Jokesab joke;
+  GetRandomJoke(this.joke);
+  @override
+  Future call(params) async {
+    return await joke.getrandomjoke();
+  }
+}

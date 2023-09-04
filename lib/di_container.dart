@@ -18,8 +18,9 @@ Future<void> initializeDependencies() async {
 
   locator.registerLazySingleton<NameRepa>(() => NameRepaImpl());
 
-  locator.registerFactory<GetnewsBloc>(
-      () => GetnewsBloc(GetJokesUsecase(joke: locator<Jokesab>())));
+  locator.registerFactory<GetnewsBloc>(() => GetnewsBloc(
+      GetJokesUsecase(joke: locator<Jokesab>()),
+      GetRandomJoke(locator<Jokesab>())));
 
   locator.registerLazySingleton<Jokesab>(() => JokesIm());
 }
