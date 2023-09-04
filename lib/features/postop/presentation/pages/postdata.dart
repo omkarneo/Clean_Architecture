@@ -22,15 +22,52 @@ class _PostDataState extends State<PostData> {
           title: const Text("Post with Clean Architecture"),
         ),
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          BlocBuilder<CleanArchiBloc, CleanArchiState>(
-            builder: (context, state) {
+          // BlocBuilder<CleanArchiBloc, CleanArchiState>(
+          //   builder: (context, state) {
+          //     if (state is SubmitedState) {
+          //       return Text("${state.res}");
+          //     }
+          //     return const Text("");
+          //   },
+          // ),
+
+          BlocListener<CleanArchiBloc, CleanArchiState>(
+            listener: (context, state) {
               if (state is SubmitedState) {
-                return Text("${state.res}");
+                print(state.res['name']);
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    content: Container(
+                      height: 150,
+                      width: 200,
+                      // width: MediaQuery.sizeOf(context).width - 50,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Id:- ${state.res['id']}"),
+                            Text("Name:- ${state.res['name']}"),
+                            Text("Password:- ${state.res['password']}"),
+                            ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text("Okay"))
+                          ],
+                        ),
+                      ),
+                    ),
+                    title: Text("Response"),
+                  ),
+                );
               }
-              return const Text("");
+              // TODO: implement listener
             },
+            child: TextBox(controller: name, lable: "Name"),
           ),
-          TextBox(controller: name, lable: "Name"),
           const SizedBox(
             height: 10,
           ),
@@ -40,8 +77,10 @@ class _PostDataState extends State<PostData> {
           ),
           ElevatedButton(
               onPressed: () {
-                BlocProvider.of<CleanArchiBloc>(context)
-                    .add(SubmitEvent(name: name.text, password: password.text));
+                if (name.text != "" && password.text != "") {
+                  BlocProvider.of<CleanArchiBloc>(context).add(
+                      SubmitEvent(name: name.text, password: password.text));
+                }
               },
               child: Text("Submit"))
         ]));
